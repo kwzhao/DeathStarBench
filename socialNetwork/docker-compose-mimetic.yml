@@ -512,7 +512,7 @@ services:
         condition: any
       placement:
         constraints:
-          - node.labels.unique_label == node28
+          - node.labels.unique_label == node0
     depends_on:
       - cassandra-schema
 
