@@ -30,4 +30,4 @@ _compose rps duration='60':
         -R {{rps}}
 
 compose rps duration limit: (_compose rps duration)
-    @just get_jaeger_traces {{duration}}000 {{limit}}
+    @just get_jaeger_traces compose-post-service {{duration}}000 {{limit}}
