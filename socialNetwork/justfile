@@ -12,7 +12,6 @@ undeploy:
 init_social_graph:
     python3 scripts/init_social_graph.py --graph=socfb-Reed98
 
-
 get_jaeger_services:
     curl -X 'GET' \
         'http://0.0.0.0:16686/api/services' \
