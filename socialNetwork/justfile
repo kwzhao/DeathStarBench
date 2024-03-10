@@ -12,11 +12,6 @@ undeploy:
 init_social_graph:
     python3 scripts/init_social_graph.py --graph=socfb-Reed98
 
-gen_compose rps duration='60':
-    ../wrk2/wrk -D exp -t 10 -c 10 -d {{duration}} -L -s \
-        ./wrk2/scripts/social-network/compose-post.lua \
-        http://0.0.0.0:8080/wrk2-api/post/compose \
-        -R {{rps}}
 
 get_jaeger_services:
     curl -X 'GET' \
@@ -27,4 +22,12 @@ get_jaeger_traces service lookback limit:
     curl -X 'GET' \
         'http://0.0.0.0:16686/api/traces?service={{service}}&lookback={{lookback}}&limit={{limit}}' \
         -H 'accept: application/json'
-        
+
+_compose rps duration='60':
+    ../wrk2/wrk -D exp -t 10 -c 10 -d {{duration}} -L -s \
+        ./wrk2/scripts/social-network/compose-post.lua \
+        http://0.0.0.0:8080/wrk2-api/post/compose \
+        -R {{rps}}
+
+compose rps duration limit: (_compose rps duration)
+    @just get_jaeger_traces {{duration}}000 {{limit}}
