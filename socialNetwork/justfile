@@ -12,7 +12,7 @@ undeploy:
 init_social_graph:
     python3 scripts/init_social_graph.py --graph=socfb-Reed98
 
-gen_compose rps dur=60:
+gen_compose rps dur='60':
     ../wrk2/wrk -D exp -t 10 -c 10 -d {{dur}} -L -s \
         ./wrk2/scripts/social-network/compose-post.lua \
         http://0.0.0.0:8080/wrk2-api/post/compose \
