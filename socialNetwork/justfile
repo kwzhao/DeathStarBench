@@ -28,6 +28,6 @@ _compose rps duration='60':
         http://0.0.0.0:8080/wrk2-api/post/compose \
         -R {{rps}}
 
-compose rps stats trace duration='60' limit='1000' :
+compose rps stats trace duration='60' limit='1000':
     @just _compose {{rps}} {{duration}} > {{stats}}
     @just get_jaeger_traces compose-post-service {{duration}}000 {{limit}} > {{trace}}
