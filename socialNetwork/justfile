@@ -13,12 +13,12 @@ init_social_graph:
     python3 scripts/init_social_graph.py --graph=socfb-Reed98
 
 get_jaeger_services:
-    curl -X 'GET' \
+    curl -sX 'GET' \
         'http://0.0.0.0:16686/api/services' \
         -H 'accept: application/json'
 
 get_jaeger_traces service lookback_secs limit:
-    curl -X 'GET' \
+    curl -sX 'GET' \
         'http://0.0.0.0:16686/api/traces?service={{service}}&lookback={{lookback_secs}}000&limit={{limit}}' \
         -H 'accept: application/json'
 
