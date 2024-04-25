@@ -25,5 +25,17 @@ get_jaeger_traces service lookback_secs limit:
 compose rps duration_secs nr_threads=10 nr_conns=10:
     ../wrk2/wrk -D exp -t {{nr_threads}} -c {{nr_conns}} -d {{duration_secs}} -L -s \
         ./wrk2/scripts/social-network/compose-post.lua \
-        http://0.0.0.0:8080/wrk2-api/post/compose \
+        http://0.0.0.0:8080/wrk2-api/ \
+        -R {{rps}}
+
+read_home_timeline rps duration_secs nr_threads=10 nr_conns=10:
+    ../wrk2/wrk -D exp -t {{nr_threads}} -c {{nr_conns}} -d {{duration_secs}} -L -s \
+        ./wrk2/scripts/social-network/read-home-timeline.lua \
+        http://0.0.0.0:8080/wrk2-api/ \
+        -R {{rps}}
+
+read_user_timeline rps duration_secs nr_threads=10 nr_conns=10:
+    ../wrk2/wrk -D exp -t {{nr_threads}} -c {{nr_conns}} -d {{duration_secs}} -L -s \
+        ./wrk2/scripts/social-network/read-user-timeline.lua \
+        http://0.0.0.0:8080/wrk2-api/ \
         -R {{rps}}
