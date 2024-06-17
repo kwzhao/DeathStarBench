@@ -28,8 +28,6 @@ services:
     entrypoint: frontend
     ports:
       - "5000:5000"
-      - "5001:5001"
-      - "5002:5002"
     depends_on:
       - consul
     restart: always
@@ -139,7 +137,7 @@ services:
       - memcached-review
       - consul
     restart: always
-  
+
   attractions:
     environment:
       - TLS
@@ -391,6 +389,7 @@ volumes:
   user:
   review:
   attractions:
+
 
 configs:
   server_config:
