@@ -11,6 +11,7 @@ import (
 	rate "github.com/delimitrou/DeathStarBench/tree/master/hotelReservation/services/rate/proto"
 	pb "github.com/delimitrou/DeathStarBench/tree/master/hotelReservation/services/search/proto"
 	"github.com/delimitrou/DeathStarBench/tree/master/hotelReservation/tls"
+	"github.com/delimitrou/DeathStarBench/tree/master/hotelReservation/tracing"
 	"github.com/google/uuid"
 	"github.com/grpc-ecosystem/grpc-opentracing/go/otgrpc"
 	_ "github.com/mbobakov/grpc-consul-resolver"
@@ -55,7 +56,10 @@ func (s *Server) Run() error {
 			PermitWithoutStream: true,
 		}),
 		grpc.UnaryInterceptor(
-			otgrpc.OpenTracingServerInterceptor(s.Tracer),
+			tracing.ChainUnaryServerInterceptors(
+				otgrpc.OpenTracingServerInterceptor(s.Tracer),
+				tracing.SizeTaggingUnaryServerInterceptor,
+			),
 		),
 	}
 

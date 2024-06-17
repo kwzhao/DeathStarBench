@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/delimitrou/DeathStarBench/tree/master/hotelReservation/tls"
+	"github.com/delimitrou/DeathStarBench/tree/master/hotelReservation/tracing"
 	"github.com/grpc-ecosystem/grpc-opentracing/go/otgrpc"
 	consul "github.com/hashicorp/consul/api"
 	opentracing "github.com/opentracing/opentracing-go"
@@ -18,7 +19,11 @@ type DialOption func(name string) (grpc.DialOption, error)
 // WithTracer traces rpc calls
 func WithTracer(tracer opentracing.Tracer) DialOption {
 	return func(name string) (grpc.DialOption, error) {
-		return grpc.WithUnaryInterceptor(otgrpc.OpenTracingClientInterceptor(tracer)), nil
+		interceptor := tracing.ChainUnaryClientInterceptors(
+			otgrpc.OpenTracingClientInterceptor(tracer),
+			tracing.SizeTaggingUnaryClientInterceptor,
+		)
+		return grpc.WithUnaryInterceptor(interceptor), nil
 	}
 }
 
