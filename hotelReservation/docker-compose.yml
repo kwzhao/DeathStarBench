@@ -129,7 +129,7 @@ services:
       - MEMC_TIMEOUT
       - LOG_LEVEL
     build: .
-    image: hotel_reserv_review_single_node
+    image: kwzhao/hotel-reservation:latest
     entrypoint: review
     container_name: 'hotel_reserv_review'
     depends_on:
@@ -146,7 +146,7 @@ services:
       - MEMC_TIMEOUT
       - LOG_LEVEL
     build: .
-    image: hotel_reserv_attractions_single_node
+    image: kwzhao/hotel-reservation:latest
     entrypoint: attractions
     container_name: 'hotel_reserv_attractions'
     depends_on:
