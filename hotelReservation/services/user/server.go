@@ -6,9 +6,9 @@ import (
 	"net"
 	"time"
 
-	"github.com/delimitrou/DeathStarBench/hotelreservation/registry"
-	pb "github.com/delimitrou/DeathStarBench/hotelreservation/services/user/proto"
-	"github.com/delimitrou/DeathStarBench/hotelreservation/tls"
+	"github.com/delimitrou/DeathStarBench/tree/master/hotelReservation/registry"
+	pb "github.com/delimitrou/DeathStarBench/tree/master/hotelReservation/services/user/proto"
+	"github.com/delimitrou/DeathStarBench/tree/master/hotelReservation/tls"
 	"github.com/google/uuid"
 	"github.com/grpc-ecosystem/grpc-opentracing/go/otgrpc"
 	"github.com/opentracing/opentracing-go"
@@ -24,14 +24,16 @@ const name = "srv-user"
 
 // Server implements the user service
 type Server struct {
+	pb.UnimplementedUserServer
+
 	users map[string]string
+	uuid  string
 
 	Tracer      opentracing.Tracer
 	Registry    *registry.Client
 	Port        int
 	IpAddr      string
 	MongoClient *mongo.Client
-	uuid        string
 }
 
 // Run starts the server

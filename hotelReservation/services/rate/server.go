@@ -11,9 +11,9 @@ import (
 	"time"
 
 	"github.com/bradfitz/gomemcache/memcache"
-	"github.com/delimitrou/DeathStarBench/hotelreservation/registry"
-	pb "github.com/delimitrou/DeathStarBench/hotelreservation/services/rate/proto"
-	"github.com/delimitrou/DeathStarBench/hotelreservation/tls"
+	"github.com/delimitrou/DeathStarBench/tree/master/hotelReservation/registry"
+	pb "github.com/delimitrou/DeathStarBench/tree/master/hotelReservation/services/rate/proto"
+	"github.com/delimitrou/DeathStarBench/tree/master/hotelReservation/tls"
 	"github.com/google/uuid"
 	"github.com/grpc-ecosystem/grpc-opentracing/go/otgrpc"
 	"github.com/opentracing/opentracing-go"
@@ -28,13 +28,16 @@ const name = "srv-rate"
 
 // Server implements the rate service
 type Server struct {
+	pb.UnimplementedRateServer
+
+	uuid string
+
 	Tracer      opentracing.Tracer
 	Port        int
 	IpAddr      string
 	MongoClient *mongo.Client
 	Registry    *registry.Client
 	MemcClient  *memcache.Client
-	uuid        string
 }
 
 // Run starts the server

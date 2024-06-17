@@ -9,9 +9,9 @@ import (
 	"time"
 
 	"github.com/bradfitz/gomemcache/memcache"
-	"github.com/delimitrou/DeathStarBench/hotelreservation/registry"
-	pb "github.com/delimitrou/DeathStarBench/hotelreservation/services/profile/proto"
-	"github.com/delimitrou/DeathStarBench/hotelreservation/tls"
+	"github.com/delimitrou/DeathStarBench/tree/master/hotelReservation/registry"
+	pb "github.com/delimitrou/DeathStarBench/tree/master/hotelReservation/services/profile/proto"
+	"github.com/delimitrou/DeathStarBench/tree/master/hotelReservation/tls"
 	"github.com/google/uuid"
 	"github.com/grpc-ecosystem/grpc-opentracing/go/otgrpc"
 	"github.com/opentracing/opentracing-go"
@@ -26,8 +26,11 @@ const name = "srv-profile"
 
 // Server implements the profile service
 type Server struct {
+	pb.UnimplementedProfileServer
+
+	uuid string
+
 	Tracer      opentracing.Tracer
-	uuid        string
 	Port        int
 	IpAddr      string
 	MongoClient *mongo.Client
