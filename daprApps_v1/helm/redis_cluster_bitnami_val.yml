@@ -352,14 +352,14 @@ volumePermissions:
   resources:
     ## Example:
     # limits:
-      #  cpu: 100m
-      #  memory: 128Mi
+    #  cpu: 1
+    #  memory: 128Mi
     ##
     limits: {}
     ## Examples:
     # requests:
-      # cpu: 100m
-      #  memory: 128Mi
+    # cpu: 1
+    #  memory: 128Mi
     ##
     # requests: {}
 ## PodSecurityPolicy configuration
@@ -480,13 +480,13 @@ redis:
     #   cpu: 3
     ## Example:
     ## limits:
-    ##    cpu: 100m
+    ##    cpu: 1
     ##    memory: 128Mi
     ##
     limits: {}
     ## Examples:
     ## requests:
-    ##    cpu: 100m
+    ##    cpu: 1
     ##    memory: 128Mi
     ##
     requests: {}
@@ -576,7 +576,7 @@ redis:
     ##   - e2e-az1
     ##   - e2e-az2
     ##
-    values: 
+    values:
       # - ath-1
       # - ath-2
       - ath-3
@@ -979,13 +979,13 @@ sysctlImage:
   resources:
     ## Example:
     ## limits:
-    ##    cpu: 100m
+    ##    cpu: 1
     ##    memory: 128Mi
     ##
     limits: {}
     ## Examples:
     ## requests:
-    ##    cpu: 100m
+    ##    cpu: 1
     ##    memory: 128Mi
     ##
     requests: {}

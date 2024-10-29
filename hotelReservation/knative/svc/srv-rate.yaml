@@ -7,18 +7,18 @@ spec:
     spec:
       containerConcurrency: 20
       containers:
-      - command:
-        - rate
-        env:
-        - name: DLOG
-          value: DEBUG
-        image: teresaliuchang/hotel_demo:v1.7
-        name: hotel-reserv-rate
-        ports:
-          - name: h2c
-            containerPort: 8084
-        resources:
-          requests:
-            cpu: 100m
-          limits:
-            cpu: 1000m
+        - command:
+            - rate
+          env:
+            - name: DLOG
+              value: DEBUG
+          image: teresaliuchang/hotel_demo:v1.7
+          name: hotel-reserv-rate
+          ports:
+            - name: h2c
+              containerPort: 8084
+          resources:
+            requests:
+              cpu: 1
+            limits:
+              cpu: 16

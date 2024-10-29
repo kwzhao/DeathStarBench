@@ -27,15 +27,16 @@ spec:
     spec:
       containers:
         - command:
-            - ./profile
+            - profile
           image: deathstarbench/hotel-reservation:latest
+          imagePullPolicy: IfNotPresent
           name: hotel-reserv-profile
           ports:
             - containerPort: 8081
           resources:
             requests:
-              cpu: 100m
+              cpu: 1
             limits:
-              cpu: 1000m
+              cpu: 16
       restartPolicy: Always
 status: {}

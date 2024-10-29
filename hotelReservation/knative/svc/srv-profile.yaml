@@ -6,18 +6,18 @@ spec:
   template:
     spec:
       containers:
-      - command:
-        - profile
-        env:
-        - name: DLOG
-          value: DEBUG
-        image: teresaliuchang/hotel_demo:v1.7
-        name: hotel-reserv-profile
-        ports:
-          - name: h2c
-            containerPort: 8081
-        resources:
-          requests:
-            cpu: 100m
-          limits:
-            cpu: 1000m
+        - command:
+            - profile
+          env:
+            - name: DLOG
+              value: DEBUG
+          image: teresaliuchang/hotel_demo:v1.7
+          name: hotel-reserv-profile
+          ports:
+            - name: h2c
+              containerPort: 8081
+          resources:
+            requests:
+              cpu: 1
+            limits:
+              cpu: 16
