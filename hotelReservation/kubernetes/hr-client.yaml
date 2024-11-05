@@ -16,6 +16,8 @@ spec:
         app: hr-client
       name: hr-client
     spec:
+      nodeSelector:
+        workgen: "true"
       containers:
         - name: hr-client
           image: deathstarbench/wrk2-client
