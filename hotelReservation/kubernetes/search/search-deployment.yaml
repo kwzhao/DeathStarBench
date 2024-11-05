@@ -28,7 +28,7 @@ spec:
       containers:
         - command:
             - search
-          image: deathstarbench/hotel-reservation:latest
+          image: kwzhao/hotel-reservation:latest
           imagePullPolicy: IfNotPresent
           name: hotel-reserv-search
           ports:
